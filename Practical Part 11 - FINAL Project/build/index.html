@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DTE - Distributed Token Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="./app.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DTE</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Exchange Overview<span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="trading.html">Fixed Token Trading</a></li>
+                <li><a href="managetoken.html">Managetoken</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <h1>Distributed Token Exchange</h1>
+            <h3>You have <span class="black"><span id="balanceTokenInExchange"></span> FIXED TOKEN</span> in the
+                exchange</h3>
+            <h3>You have <span class="black"><span id="balanceEtherInExchange"></span> ETHER</span> in the exchange</h3>
+
+            <hr />
+            <h3>Deposit</h3>
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Deposit Token</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputNameDepositToken">Symbol Name</label>
+                                    <input type="text" name="inputNameDepositToken" class="form-control"
+                                           id="inputNameDepositToken" placeholder="e.g. FIXED">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAmountDepositToken">Amount in Token</label>
+                                    <input type="number" name="inputAmountDepositToken" class="form-control"
+                                           id="inputAmountDepositToken" placeholder="e.g., 95">
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="panel-footer"><button type="button" class="btn btn-default" onclick="App.depositToken();return false;">Deposit
+                            Token
+                        </button></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Deposit Ether</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputAmountDepositEther">Amount in Ether</label>
+                                    <input type="number" name="inputAmountDepositEther" class="form-control"
+                                           id="inputAmountDepositEther" placeholder="e.g., 95">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="panel-footer"><button type="button" class="btn btn-default" onclick="App.depositEther();return false;">Deposit
+                            Ether
+                        </button></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <hr />
+            <h3>Withdrawal</h3>
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Withdraw Token</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputNameWithdrawalToken">Symbol Name</label>
+                                    <input type="text" name="inputNameWithdrawalToken" class="form-control"
+                                           id="inputNameWithdrawalToken" placeholder="e.g. FIXED">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAmountWithdrawalToken">Amount in Token</label>
+                                    <input type="number" name="inputAmountWithdrawalToken" class="form-control"
+                                           id="inputAmountWithdrawalToken" placeholder="e.g., 95">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-default" onclick="App.withdrawToken();return false;">
+                                Withdraw Token
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Withdraw Ether</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputAmountWithdrawalEther">Amount in Token</label>
+                                    <input type="number" name="inputAmountWithdrawalEther" class="form-control"
+                                           id="inputAmountWithdrawalEther" placeholder="e.g., 95">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-default" onclick="App.withdrawEther();return false;">
+                                Withdraw Ether
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4" style="background-color: #eee; min-height: 100vh;">
+            <h3>Events from the Token Contract</h3>
+            <div id="tokenEvents"></div>
+            <h3>Status from our Javascript</h3>
+            <span id="status"></span>
+            <h3>Important Information</h3>
+            <span id="importantInformation"></span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    window.addEventListener('load', function () {
+        App.initExchange();
+    });
+</script>
+
+</body>
+</html>

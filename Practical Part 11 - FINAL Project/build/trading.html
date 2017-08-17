@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DTE - Distributed Token Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="./app.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DTE</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Exchange Overview</a></li>
+                <li class="active"><a href="trading.html">Fixed Token Trading<span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="managetoken.html">Managetoken</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <h1>Distributed Token Exchange</h1>
+
+            <p>Here you can trade the FIXED token we discuss during our course. The Solidity Contract is not limited to a single token and new tokens can be easily added.</p>
+            <h3>New Order</h3>
+            <div class="row">
+
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Buy Token</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputNameBuyToken">Symbol Name</label>
+                                    <input type="text" name="inputNameBuyToken" class="form-control"
+                                           id="inputNameBuyToken" placeholder="e.g. FIXED">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAmountBuyToken">Amount in Token</label>
+                                    <input type="number" name="inputAmountBuyToken" class="form-control"
+                                           id="inputAmountBuyToken" placeholder="e.g., 95">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPriceBuyToken">Price in Wei</label>
+                                    <input type="number" name="inputPriceBuyToken" class="form-control"
+                                           id="inputPriceBuyToken" placeholder="e.g., 9500000">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+
+                            <button type="button" class="btn btn-default btn-block btn-success"
+                                    onclick="App.buyToken();return false;">Buy
+                                Token
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sell Token</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputNameSellToken">Symbol Name</label>
+                                    <input type="text" name="inputNameSellToken" class="form-control"
+                                           id="inputNameSellToken" placeholder="e.g. FIXED">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAmountSellToken">Amount in Token</label>
+                                    <input type="number" name="inputAmountSellToken" class="form-control"
+                                           id="inputAmountSellToken" placeholder="e.g., 95">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPriceSellToken">Price in Wei</label>
+                                    <input type="number" name="inputPriceSellToken" class="form-control"
+                                           id="inputPriceSellToken" placeholder="e.g., 9500000">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-default btn-block btn-danger"
+                                    onclick="App.sellToken();return false;">Sell
+                                Token
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <h3>Order Book</h3>
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Bid</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="buyOrderBook"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ask</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="sellOrderBook"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4" style="background-color: #eee; min-height: 100vh;">
+            <h3>Your Assets</h3>
+            <div><span id="balanceTokenInExchange"></span> FIXED Token</div>
+            <div><span id="balanceEtherInExchange"></span> ETHER</div>
+
+            <h3>Fulfilled Orders</h3>
+            <div id="fulfilledorderEvents"></div>
+            <h3>Limit Orders</h3>
+            <div id="limitdorderEvents"></div>
+            <h3>Status from our Javascript</h3>
+            <span id="status"></span>
+            <h3>Important Information</h3>
+            <span id="importantInformation"></span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    window.addEventListener('load', function () {
+        App.initTrading();
+    });
+</script>
+</body>
+</html>

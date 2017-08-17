@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DTE - Distributed Token Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="./app.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DTE</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Exchange Overview</a></li>
+                <li><a href="trading.html">Fixed Token Trading</a></li>
+                <li class="active"><a href="managetoken.html">Managetoken <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <h1>Manage Token</h1>
+            <p>This page is intended for the FIXED Token as sample only. You can send token and you can approve token.
+                <br/>
+                Additionally you can add a token to the exchange provided in this example.</p>
+            <h3>You have <span class="black"><span id="balanceTokenInToken"></span> TOKEN</span> in your account</h3>
+
+            <br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">Send Token</div>
+                        <div class="panel-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputAmountSendToken">Amount in Token</label>
+                                    <input type="number" name="inputAmountSendToken" class="form-control"
+                                           id="inputAmountSendToken" placeholder="e.g., 95">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputBeneficiarySendToken">To (address)</label>
+                                    <input type="text" class="form-control" id="inputBeneficiarySendToken"
+                                           name="inputBeneficiarySendToken" placeholder="e.g. 0x123ABde44...">
+                                </div>
+                                <button type="button" class="btn btn-default" onclick="App.sendToken();return false;">
+                                    Send Token
+                                </button>
+                            </form>
+
+                        </div>
+                        <div class="panel-footer">Directly send a token from your address to another address.</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default panel-primary">
+                        <div class="panel-heading">Approve Token Allowance</div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputAmountAllowanceToken">Amount in Token</label>
+                                    <input type="number" name="inputAmountAllowanceToken" class="form-control"
+                                           id="inputAmountAllowanceToken" placeholder="e.g., 95">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputBeneficiaryAllowanceToken">To (address)</label>
+                                    <input type="text" class="form-control" id="inputBeneficiaryAllowanceToken"
+                                           name="inputBeneficiaryAllowanceToken" placeholder="e.g. 0x123ABde44...">
+                                </div>
+                                <button type="button" class="btn btn-default"
+                                        onclick="App.allowanceToken();return false;">Allow Token to be used
+                                </button>
+                            </form>
+                        </div>
+                        <div class="panel-footer">Approve the address <i>to be allowed</i> to send a token from your
+                            address to another address. This is important for the Exchange. When you fund the token in
+                            the exchange then it will deduct in your name the token from your address to the token
+                            address.
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-heading">Add Token to Exchange</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputNameTokenAddExchange">Name of the Token</label>
+                            <input type="text" name="inputNameTokenAddExchange" class="form-control"
+                                   id="inputNameTokenAddExchange" placeholder="FIXED">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddressTokenAddExchange">Address of Token</label>
+                            <input type="text" class="form-control" id="inputAddressTokenAddExchange"
+                                   name="inputAddressTokenAddExchange" placeholder="e.g. 0x123ABde44...">
+                        </div>
+                        <button type="button" class="btn btn-default" onclick="App.addTokenToExchange();return false;">
+                            Add Token to Exchange
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4" style="background-color: #eee; min-height: 100vh;">
+            <h3>Events from the Token Contract</h3>
+            <div id="tokenEvents"></div>
+            <h3>Status from our Javascript</h3>
+            <span id="status"></span>
+            <h3>Important Information</h3>
+            <span id="importantInformation"></span>
+        </div>
+        </div>
+</div>
+
+<script type="text/javascript">
+
+    window.addEventListener('load', function () {
+        App.initManageToken();
+    });
+</script>
+
+</body>
+</html>
