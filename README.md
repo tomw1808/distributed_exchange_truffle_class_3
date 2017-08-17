@@ -2,7 +2,7 @@
 
 This repository is part of the _Ethereum Advanced: ICO and Token Exchange with Solidity_ course on Udemy. The Token-Exchange can be tested with MetaMask and the Rinkeby Test-Net under https://tomw1808.github.io/distributed_exchange_truffle_class_3/index.html
 
-![distributed token exchange splash screen](spash_screen.png "The Distributed Token Exchange")
+![distributed token exchange splash screen](splash_screen.png "The Distributed Token Exchange")
 
 The Exchange Smart-Contract has 3 functions:
 1. Funding: It's possible to deposit and withdraw both _tokens_ of any kind and Ether
