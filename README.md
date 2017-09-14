@@ -1,6 +1,6 @@
 # Ethereum Distributed Token Exchange
 
-This repository is part of the _Ethereum Advanced: ICO and Token Exchange with Solidity_ course on Udemy. The Token-Exchange can be tested with MetaMask and the Rinkeby Test-Net under https://tomw1808.github.io/distributed_exchange_truffle_class_3/index.html
+This repository is part of the [_Ethereum Developer Masterclass: ICO and Token Exchange with Solidity_](https://www.udemy.com/ethereum-masterclass/?couponCode=VOMTOMWEBSITE10) course on Udemy. The Token-Exchange can be tested with MetaMask and the Rinkeby Test-Net under [https://tomw1808.github.io/distributed_exchange_truffle_class_3/index.html](https://tomw1808.github.io/distributed_exchange_truffle_class_3/index.html)
 
 ![distributed token exchange splash screen](exchange_animation.gif "The Distributed Token Exchange")
 
