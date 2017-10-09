@@ -64,6 +64,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+# Just interested in the code?
+
+1. Download necessary tools
+```
+npm install -g truffle
+```
+
+2. Download this repository:
+git clone https://github.com/tomw1808/distributed_exchange_truffle_class_3.git
+cd  "Practical Part 11 - FINAL Project"
+```
+
+3. With a running Ethereum Blockchain Node in the background (such as the ethereumjs-testrpc) do
+```
+truffle migrate
+npm run dev
+```
+
 
 # About me
 If you are interested about my work, what I do and where you can get more courses, material and information, checkout my blog: [https://vomtom.at](https://vomtom.at)
