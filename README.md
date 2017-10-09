@@ -72,6 +72,7 @@ npm install -g truffle
 ```
 
 2. Download this repository:
+```
 git clone https://github.com/tomw1808/distributed_exchange_truffle_class_3.git
 cd  "Practical Part 11 - FINAL Project"
 ```
