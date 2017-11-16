@@ -7,9 +7,6 @@ contract('Exchange Basic Tests', function (accounts) {
         var myExchangeInstance;
         return fixedSupplyToken.deployed().then(function (instance) {
             myTokenInstance = instance;
-            return instance;
-        }).then(function (tokenInstance) {
-            myTokenInstance = tokenInstance;
             return exchange.deployed();
         }).then(function (exchangeInstance) {
             myExchangeInstance = exchangeInstance;
