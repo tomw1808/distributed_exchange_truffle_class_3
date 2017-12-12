@@ -103,8 +103,6 @@ contract('Simple Order Tests', function (accounts) {
             orderBookLengthBeforeBuy = orderBook[0].length;
             return myExchangeInstance.buyToken("FIXED", web3.toWei(2.2, "finney"), 5);
         }).then(function(txResult) {
-            console.log(txResult);
-            console.log(txResult.logs[0].args);
             /**
              * Assert the logs
              */
@@ -115,7 +113,7 @@ contract('Simple Order Tests', function (accounts) {
         }).then(function (orderBook) {
             orderBookLengthAfterBuy = orderBook[0].length;
             assert.equal(orderBookLengthAfterBuy, orderBookLengthBeforeBuy + 1, "OrderBook should have 1 buy offers more than before");
-            return myExchangeInstance.cancelOrder("FIXED", false, web3.toWei(2, "finney"), orderKey);
+            return myExchangeInstance.cancelOrder("FIXED", false, web3.toWei(2.2, "finney"), orderKey);
         }).then(function(txResult) {
             assert.equal(txResult.logs[0].event, "BuyOrderCanceled", "The Log-Event should be BuyOrderCanceled");
             return myExchangeInstance.getBuyOrderBook.call("FIXED");
