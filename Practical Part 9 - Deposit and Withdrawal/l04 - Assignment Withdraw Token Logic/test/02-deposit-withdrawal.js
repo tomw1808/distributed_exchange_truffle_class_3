@@ -51,33 +51,33 @@ contract('Exchange Basic Tests', function (accounts) {
     //    });
     //});
 
-    it("should be possible to Deposit and Withdrawal Ether", function () {
-        var myExchangeInstance;
-        var balanceBeforeTransaction = web3.eth.getBalance(accounts[0]);
-        var balanceAfterDeposit;
-        var balanceAfterWithdrawal;
-        var gasUsed = 0;
+        it("should be possible to Deposit and Withdrawal Ether", function () {
+            var myExchangeInstance;
+            var balanceBeforeTransaction = web3.eth.getBalance(accounts[0]);
+            var balanceAfterDeposit;
+            var balanceAfterWithdrawal;
+            var gasUsed = 0;
 
-        return exchange.deployed().then(function (instance) {
-            myExchangeInstance = instance;
-            return myExchangeInstance.depositEther({from: accounts[0], value: web3.toWei(1, "ether")});
-        }).then(function (txHash) {
-            gasUsed += txHash.receipt.cumulativeGasUsed * web3.eth.getTransaction(txHash.receipt.transactionHash).gasPrice.toNumber(); //here we have a problem
-            balanceAfterDeposit = web3.eth.getBalance(accounts[0]);
-            return myExchangeInstance.getEthBalanceInWei.call();
-        }).then(function (balanceInWei) {
-            assert.equal(balanceInWei.toNumber(), web3.toWei(1, "ether"), "There is one ether available");
-            assert.isAtLeast(balanceBeforeTransaction.toNumber() - balanceAfterDeposit.toNumber(), web3.toWei(1, "ether"),  "Balances of account are the same");
-            return myExchangeInstance.withdrawEther(web3.toWei(1, "ether"));
-        }).then(function (txHash) {
-            balanceAfterWithdrawal = web3.eth.getBalance(accounts[0]);
-            return myExchangeInstance.getEthBalanceInWei.call();
-        }).then(function (balanceInWei) {
-            assert.equal(balanceInWei.toNumber(), 0, "There is no ether available anymore");
-            assert.isAtLeast(balanceAfterWithdrawal.toNumber(), balanceBeforeTransaction.toNumber() - gasUsed*2, "There is one ether available");
+            return exchange.deployed().then(function (instance) {
+                myExchangeInstance = instance;
+                return myExchangeInstance.depositEther({from: accounts[0], value: web3.toWei(1, "ether")});
+            }).then(function (txHash) {
+                gasUsed += txHash.receipt.cumulativeGasUsed * web3.eth.getTransaction(txHash.receipt.transactionHash).gasPrice.toNumber(); //here we have a problem
+                balanceAfterDeposit = web3.eth.getBalance(accounts[0]);
+                return myExchangeInstance.getEthBalanceInWei.call();
+            }).then(function (balanceInWei) {
+                assert.equal(balanceInWei.toNumber(), web3.toWei(1, "ether"), "There is one ether available");
+                assert.isAtLeast(balanceBeforeTransaction.toNumber() - balanceAfterDeposit.toNumber(), web3.toWei(1, "ether"),  "Balances of account are the same");
+                return myExchangeInstance.withdrawEther(web3.toWei(1, "ether"));
+            }).then(function (txHash) {
+                balanceAfterWithdrawal = web3.eth.getBalance(accounts[0]);
+                return myExchangeInstance.getEthBalanceInWei.call();
+            }).then(function (balanceInWei) {
+                assert.equal(balanceInWei.toNumber(), 0, "There is no ether available anymore");
+                assert.isAtLeast(balanceAfterWithdrawal.toNumber(), balanceBeforeTransaction.toNumber() - gasUsed*2, "There is one ether available");
 
+            });
         });
-    });
 
 
     it("should be possible to Deposit Token", function () {
