@@ -44,6 +44,7 @@ window.App = {
 
             accounts = accs;
             account = accounts[0];
+
         });
     },
 
@@ -114,7 +115,7 @@ window.App = {
                 argsBox.setAttribute("class", "form-control");
                 argsBox.innerText = JSON.stringify(result.args);
                 alertbox.appendChild(argsBox);
-                document.getElementById("exchangeEvents").appendChild(alertbox);
+                document.getElementById("tokenEvents").appendChild(alertbox);
                 //document.getElementById("tokenEvents").innerHTML += '<div class="alert alert-info  alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><div></div><div>Args: '+JSON.stringify(result.args) + '</div></div>';
 
             });
@@ -130,11 +131,11 @@ window.App = {
         var exchangeInstance;
         ExchangeContract.deployed().then(function (instance) {
             exchangeInstance = instance;
-            return exchangeInstance.getBalance("FIXED");
+            return exchangeInstance.getBalance("FIXED", {from: account});
         }).then(function (value) {
             var balance_element = document.getElementById("balanceTokenInExchange");
             balance_element.innerHTML = value.toNumber();
-            return exchangeInstance.getEthBalanceInWei();
+            return exchangeInstance.getEthBalanceInWei({from: account});
         }).then(function (value) {
             var balance_element = document.getElementById("balanceEtherInExchange");
             balance_element.innerHTML = web3.fromWei(value, "ether");
